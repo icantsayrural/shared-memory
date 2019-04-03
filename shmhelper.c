@@ -9,12 +9,6 @@
 
 void *SHARED_MEM_INVALID = (void *) -1;
 
-void error(char *message) {
-  printf("%s", message);
-  printf("\n");
-  printf("%s\n", strerror(errno));
-}
-
 void *create_shared_memory(char *name, int size) {
   int shm_fd;
   void *ptr;
@@ -43,7 +37,7 @@ void *create_shared_memory(char *name, int size) {
   return ptr;
 }
 
-void *get_shared_memory(char *name, int size, bool write) {
+void *get_shared_memory(char *name, int size) {
   int shm_fd;
   void *ptr;
 
@@ -53,11 +47,7 @@ void *get_shared_memory(char *name, int size, bool write) {
     return SHARED_MEM_INVALID;
   }
 
-  int flags = PROT_READ;
-  if (write) {
-    flags = flags | PROT_WRITE;
-  }
-  ptr = mmap(0, size, flags, MAP_SHARED, shm_fd, 0);
+  ptr = mmap(0, size, PROT_WRITE | PROT_READ, MAP_SHARED, shm_fd, 0);
   if (ptr == MAP_FAILED) {
     error("Failed to memory map the shared object.");
     return SHARED_MEM_INVALID;
@@ -94,7 +84,7 @@ int create_mutex(char *name) {
 }
 
 pthread_mutex_t *get_mutex(char *name) {
-  return (pthread_mutex_t *) get_shared_memory(name, sizeof(pthread_mutex_t), true);
+  return (pthread_mutex_t *) get_shared_memory(name, sizeof(pthread_mutex_t));
 }
 
 int create_string(char *name, char *message) {
@@ -108,5 +98,11 @@ int create_string(char *name, char *message) {
 }
 
 char *get_string(char *name) {
-  return (char *) get_shared_memory(name, sizeof(name), false);
+  return (char *) get_shared_memory(name, sizeof(name));
+}
+
+void error(char *message) {
+  printf("%s", message);
+  printf("\n");
+  printf("%s\n", strerror(errno));
 }
