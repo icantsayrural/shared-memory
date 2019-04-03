@@ -1,10 +1,10 @@
 CC=cc
 
-set: set.o
-	$(CC) -o set set.o
+set: set.o shared.h shmhelper.o
+	$(CC) -o set set.o shmhelper.o
 
-get: get.o
-	$(CC) -o get get.o
+get: get.o shared.h shmhelper.o
+	$(CC) -o get get.o shmhelper.o
 
 clean:
-	rm set.o get.o set get
+	rm set.o get.o set get shmhelper.o
