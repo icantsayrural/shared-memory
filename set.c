@@ -1,3 +1,7 @@
+/**
+ * Sets a lock and message string to shared memory
+ */
+
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <string.h> 
@@ -13,13 +17,13 @@ int main()
 {
   char *message = "Hello World!\n";
 
-  printf("Creating lock...\n");
-  if (set_mutex(MUTEX) == -1) {
+  printf("Setting lock...\n");
+  if (set_lock(LOCK) == -1) {
     return -1;
   }
 
-  printf("Creating value...\n");
-  if (set_string(VALUE, message) == -1) {
+  printf("Setting message...\n");
+  if (set_message(MESSAGE, message) == -1) {
     return -1;
   }
 

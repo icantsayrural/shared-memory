@@ -13,7 +13,7 @@ int main()
   char *message;
 
   printf("Getting lock...\n");
-  mutex = get_mutex(MUTEX);
+  mutex = get_lock(LOCK);
   if (mutex == SHARED_MEM_INVALID) {
     return -1;
   }
@@ -24,8 +24,8 @@ int main()
     return -1;
   }
 
-  printf("Locally save value...\n");
-  message = get_string(VALUE);
+  printf("Getting message...\n");
+  message = get_message(MESSAGE);
   printf("Sleep...\n");
   sleep(5);
 

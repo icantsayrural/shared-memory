@@ -56,7 +56,7 @@ void *get_shared_memory(char *name, int size) {
   return ptr;
 }
 
-int set_mutex(char *name) {
+int set_lock(char *name) {
   pthread_mutexattr_t attr;
   pthread_mutex_t *ptr;
 
@@ -83,11 +83,11 @@ int set_mutex(char *name) {
   return 0;
 }
 
-pthread_mutex_t *get_mutex(char *name) {
+pthread_mutex_t *get_lock(char *name) {
   return (pthread_mutex_t *) get_shared_memory(name, sizeof(pthread_mutex_t));
 }
 
-int set_string(char *name, char *message) {
+int set_message(char *name, char *message) {
   void *ptr = create_shared_memory(name, sizeof(message));
   if (ptr == SHARED_MEM_INVALID) {
     return -1;
@@ -97,7 +97,7 @@ int set_string(char *name, char *message) {
   return 0;
 }
 
-char *get_string(char *name) {
+char *get_message(char *name) {
   return (char *) get_shared_memory(name, sizeof(name));
 }
 

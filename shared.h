@@ -1,7 +1,7 @@
 #ifndef __SHARED_H__
 #define __SHARED_H__
 
-#define MUTEX "mutex"
-#define VALUE "value"
+#define LOCK "lock"
+#define MESSAGE "message"
 
 #endif
