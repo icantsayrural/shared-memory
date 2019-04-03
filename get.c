@@ -1,3 +1,9 @@
+/**
+ * Blocks on lock (in shared memory),
+ * Get message from shared memory
+ * Releases lock
+ */
+
 #include "shmhelper.h"
 #include "shared.h"
 #include <stdio.h> 
