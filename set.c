@@ -14,12 +14,12 @@ int main()
   char *message = "Hello World!\n";
 
   printf("Creating lock...\n");
-  if (create_mutex(MUTEX) == -1) {
+  if (set_mutex(MUTEX) == -1) {
     return -1;
   }
 
   printf("Creating value...\n");
-  if (create_string(VALUE, message) == -1) {
+  if (set_string(VALUE, message) == -1) {
     return -1;
   }
 

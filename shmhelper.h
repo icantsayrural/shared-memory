@@ -16,7 +16,7 @@ void *get_shared_memory(char *name, int size);
 
 // Creates a pthread lock in shared memory space
 // with specified name
-int create_mutex(char *name);
+int set_mutex(char *name);
 
 // Returns a pointer to a pthread lock in shared memory space
 // with specified name
@@ -24,7 +24,7 @@ pthread_mutex_t *get_mutex(char *name);
 
 // Creates a message string in shared memory space
 // with specified name
-int create_string(char *name, char *message);
+int set_string(char *name, char *message);
 
 // Returns an existing message string in shared memory space
 // with specified name
