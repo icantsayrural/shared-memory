@@ -15,6 +15,7 @@ void *create_shared_memory(char *name, int size) {
 
   // in OSX, ftruncate only works if I put an shm_unlink before shm_open
   // i.e. destroy POSIX shared memory object
+  // As shared memory has kernel or filesystem persistence, the user must explicitly destroy it
   // see: https://stackoverflow.com/a/25510361
   shm_unlink(name);
   shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
